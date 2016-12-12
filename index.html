@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pl" ng-app="validator">
+<head>
+    <meta charset="UTF-8">
+    <title>Front-End-Dev-Bootcamp_w3-ex4</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="angular.min.js"></script>
+</head>
+<body ng-controller="FormController">
+    <h1>Rejestracja</h1>
+    <form name="form" novalidate ng-submit="register()" ng-show="!successfullySubmitted">
+        <div class="form-group">
+            <label for="uName">Imię
+                <input 
+                    type="text"
+                    name="uName"
+                    ng-model="user.name"
+                    required="required">
+            </label>
+            <span class="error" ng-show="form.uName.$error.required && form.uName.$touched">Musisz podać imię</span>
+        </div>
+        <div class="form-group">
+            <label for="uLastmane">Nazwisko
+            <input 
+                type="text"
+                name="uLastmane"
+                ng-model="user.uLastmane">   
+            </label> 
+        </div>
+        <div class="form-group">
+            <label for="email">Mail
+            <input
+                type="email" 
+                name="email"
+                ng-model="user.email" 
+                ng-required="true">
+            </label>
+        </div>
+        <div class="form-group">
+            <label for="passowrd">Hasło
+                <input 
+                    type="password" 
+                    name="passowrd"
+                    ng-model="user.password" 
+                    ng-required="true"
+                    ng-minlength="5">
+            </label>
+        </div>
+        <label for="checkbox">
+            <input 
+                type="checkbox"
+                name="checkbox"
+                ng-disabled="form.$invalid"
+                ng-required="true">Akceptuję regulamin
+        </label>
+        <button type="submit" ng-disabled="form.$invalid">Zarejestruj</button>
+    </form>
+    <span ng-show="successfullySubmitted">Dziękuję za rejestrację, {{ user.name }}</span>
+    <script src="app.js"></script>
+</body>
+</html>
